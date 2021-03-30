@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movies</title>
+{% extends "movies/layout.html" %}
+
+{% block title %}
+    Movies
+{% endblock %}
+
+
+{% block body %}
 
     <h1>All Movies Page</h1>
 
@@ -17,8 +20,5 @@
             </div>
         {% endfor %}
     </ul>
-</head>
-<body>
 
-</body>
-</html>
+{% endblock %}

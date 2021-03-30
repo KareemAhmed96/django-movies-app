@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Show Movie</title>
+{% extends "movies/layout.html" %}
+
+{% block title %}
+    Show {{ movie.title }}
+{% endblock %}
+
+
+{% block body %}
 
     <img src="{{ movie.poster.url }}" width="120" height="200">
 
@@ -31,8 +34,5 @@
     <br><br>
     <button><a href="{% url 'edit' movie.id %}" >Edit Movie</a></button>
     <button><a href="{% url 'delete' movie.id %}" >Delete Movie</a></button>
-</head>
-<body>
 
-</body>
-</html>
+{% endblock %}

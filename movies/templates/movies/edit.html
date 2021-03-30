@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Movie</title>
+{% extends "movies/layout.html" %}
+
+{% block title %}
+    Edit {{ movie.title }}
+{% endblock %}
+
+
+{% block body %}
 
     <h1>Edit Movie Page</h1>
 
@@ -12,8 +15,4 @@
         <button type="submit">Edit Movie</button>
     </form>
 
-</head>
-<body>
-
-</body>
-</html>
+{% endblock %}
