@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+
+    <h1>All Movies Page</h1>
+
+    <ul>
+        {% for movie in movies %}
+            <img src="{{ movie.poster.url }}" width="120" height="200">
+            <div>
+                <a href="{% url 'show' movie.id %}">{{ movie.title }}</a>
+                <h4>{{ movie.overview }}</h4>
+            </div>
+        {% endfor %}
+    </ul>
+</head>
+<body>
+
+</body>
+</html>

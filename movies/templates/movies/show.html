@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Movie</title>
+
+    <img src="{{ movie.poster.url }}" width="120" height="200">
+
+    <div>
+        <h3>{{ movie.title }}</h3>
+        <h5>{{ movie.desc }}</h5>
+        <h5>{{ move.year }}</h5>
+    </div>
+
+    <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>
+    <br><br>
+    <button><a href="{% url 'edit' movie.id %}" >Edit Movie</a></button>
+    <button><a href="{% url 'delete' movie.id %}" >Delete Movie</a></button>
+</head>
+<body>
+
+</body>
+</html>
