@@ -26,7 +26,7 @@ class Movie(models.Model):
     poster = models.ImageField(upload_to="movies/posters")
     video = models.FileField(upload_to="movies/video")
     categories = models.ManyToManyField(Category)
-    #cast = models.ManyToManyField(Cast)
+    cast = models.ManyToManyField(Cast)
 
     def __str__(self):
         return str(self.title)

@@ -9,8 +9,22 @@
     <div>
         <h3>{{ movie.title }}</h3>
         <h5>{{ movie.desc }}</h5>
-        <h5>{{ movie.categories }}</h5>
-        <h5>{{ move.year }}</h5>
+
+        <h5>Categories</h5>
+        <ul>
+            {% for category in movie.categories.all %}
+                <li>{{ category }}</li>
+            {% endfor %}
+        </ul>
+
+        <h5>Cast</h5>
+        <ul>
+            {% for actor in movie.cast.all %}
+                <li>{{ actor }}</li>
+            {% endfor %}
+        </ul>
+
+        <h5>Year: {{ movie.year }}</h5>
     </div>
 
     <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>

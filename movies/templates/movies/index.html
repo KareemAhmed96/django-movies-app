@@ -7,6 +7,8 @@
     <h1>All Movies Page</h1>
 
     <ul>
+        <button><a href="{% url 'add' %}">Add Movie</a></button>
+        <br><br>
         {% for movie in movies %}
             <img src="{{ movie.poster.url }}" width="120" height="200">
             <div>
