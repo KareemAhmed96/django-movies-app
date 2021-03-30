@@ -5,11 +5,17 @@ from django.db import models
 class Category(models.Model):
     title = models.CharField(max_length=100, null=True)
 
+    def __str__(self):
+        return str(self.title)
+
 
 class Cast(models.Model):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
     address = models.TextField(max_length=500)
+
+    def __str__(self):
+        return str(self.name)
 
 
 class Movie(models.Model):
@@ -19,6 +25,9 @@ class Movie(models.Model):
     rate = models.IntegerField()
     poster = models.ImageField(upload_to="movies/posters")
     video = models.FileField(upload_to="movies/video")
-    #categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
     #cast = models.ManyToManyField(Cast)
+
+    def __str__(self):
+        return str(self.title)
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Movie, Category
+from .models import Category, Movie
 
 
 class MovieForm(forms.ModelForm):
