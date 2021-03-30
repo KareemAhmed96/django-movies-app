@@ -3,6 +3,9 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
+    class Meta:
+        verbose_name_plural = "Categories"
+
     title = models.CharField(max_length=100, null=True)
 
     def __str__(self):
@@ -10,6 +13,9 @@ class Category(models.Model):
 
 
 class Rate(models.Model):
+    class Meta:
+        verbose_name_plural = "Ratings"
+
     rate = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
@@ -17,6 +23,9 @@ class Rate(models.Model):
 
 
 class Cast(models.Model):
+    class Meta:
+        verbose_name_plural = "Cast"
+
     name = models.CharField(max_length=50)
     age = models.IntegerField()
     address = models.TextField(max_length=500)
@@ -26,6 +35,9 @@ class Cast(models.Model):
 
 
 class Country(models.Model):
+    class Meta:
+        verbose_name_plural = "Countries"
+
     name = models.CharField(max_length=100)
 
     def __str__(self):
