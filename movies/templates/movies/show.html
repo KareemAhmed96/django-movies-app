@@ -28,6 +28,8 @@
         </ul>
 
         <h5>Year: {{ movie.year }}</h5>
+        <h5>Country: {{ movie.country }}</h5>
+        <h5>Rate: {{ movie.rate }}</h5>
     </div>
 
     <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>

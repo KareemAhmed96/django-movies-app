@@ -9,6 +9,13 @@ class Category(models.Model):
         return str(self.title)
 
 
+class Rate(models.Model):
+    rate = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.rate)
+
+
 class Cast(models.Model):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
@@ -18,15 +25,25 @@ class Cast(models.Model):
         return str(self.name)
 
 
+class Country(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.name)
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=50)
     desc = models.TextField(max_length=500)
     year = models.DateField()
-    rate = models.IntegerField()
     poster = models.ImageField(upload_to="movies/posters")
     video = models.FileField(upload_to="movies/video")
     categories = models.ManyToManyField(Category)
     cast = models.ManyToManyField(Cast)
+    rate = models.OneToOneField(Rate, null=True, on_delete=models.SET_NULL)
+
+    # ForeignKey => One To Many Relation
+    country = models.ForeignKey(Country, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return str(self.title)
