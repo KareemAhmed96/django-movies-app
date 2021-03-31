@@ -15,6 +15,6 @@ def signup(request):
             login(request, user)
             return redirect('index')
 
-    return render(request, "accounts/signup.html", {
+    return render(request, "registration/signup.html", {
         'form': form
     })

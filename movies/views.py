@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import MovieForm
 from .models import Movie
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required
 def index(request):
     movies = Movie.objects.all()
 
