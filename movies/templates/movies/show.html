@@ -32,9 +32,11 @@
         <h5>Rate: {{ movie.rate }}</h5>
     </div>
 
-    <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>
-    <br><br>
     <button><a href="{% url 'edit' movie.id %}" >Edit Movie</a></button>
     <button><a href="{% url 'delete' movie.id %}" >Delete Movie</a></button>
+
+    <br><br>
+
+    <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import MovieForm
 from .models import Movie
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -14,6 +14,8 @@ def index(request):
     })
 
 
+@login_required
+@permission_required("movies.view_movie")
 def show(request, id):
     movie = Movie.objects.get(pk=id)
 
@@ -22,6 +24,7 @@ def show(request, id):
     })
 
 
+@login_required
 def add(request):
     form = MovieForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -33,6 +36,7 @@ def add(request):
     })
 
 
+@login_required
 def edit(request, id):
     movie = Movie.objects.get(pk=id)
     form = MovieForm(request.POST or None, request.FILES or None, instance=movie)
@@ -46,6 +50,7 @@ def edit(request, id):
     })
 
 
+@login_required
 def delete(request, id):
     movie = Movie.objects.get(pk=id)
     movie.delete()
