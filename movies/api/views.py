@@ -1,8 +1,10 @@
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework import generics
+
 from movies.models import Movie
 from .serializers import MovieSerializer
-from rest_framework.decorators import api_view
 
 
 @api_view(["GET", ])
@@ -31,3 +33,32 @@ def create(request):
         "success": False,
         "errors": serializer.errors
     }, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Generic Views
+
+class MovieList(generics.ListAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+
+class CreateMovie(generics.CreateAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+
+class UpdateMovie(generics.UpdateAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+
+class DeleteMovie(generics.DestroyAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+
+# Combined APIs
+
+# class MovieRUD(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Movie.objects.all()
+#     serializer_class = MovieSerializer
