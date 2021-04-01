@@ -35,6 +35,24 @@ def create(request):
     }, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(["PUT", "POST"])
+def update(request, id):
+    movie = Movie.objects.get(id=id)
+    serializer = MovieSerializer(data=request.data, instance=movie)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(data={
+            "success": True,
+            "id": serializer.data["id"],
+            "message": "Movie edited successfully"
+        }, status=status.HTTP_201_CREATED)
+
+    return Response(data={
+        "success": False,
+        "errors": serializer.errors
+    }, status=status.HTTP_400_BAD_REQUEST)
+
+
 # Generic Views
 
 class MovieList(generics.ListAPIView):
@@ -62,3 +80,5 @@ class DeleteMovie(generics.DestroyAPIView):
 # class MovieRUD(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Movie.objects.all()
 #     serializer_class = MovieSerializer
+
+# viewsets
