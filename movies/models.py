@@ -47,9 +47,9 @@ class Country(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=50)
     desc = models.TextField(max_length=500)
-    year = models.DateField()
-    poster = models.ImageField(upload_to="movies/posters")
-    video = models.FileField(upload_to="movies/video")
+    year = models.DateField(null=True, blank=True)
+    poster = models.ImageField(upload_to="movies/posters", null=True, blank=True)
+    video = models.FileField(upload_to="movies/video", null=True, blank=True)
     categories = models.ManyToManyField(Category)
     cast = models.ManyToManyField(Cast)
     rate = models.OneToOneField(Rate, null=True, on_delete=models.SET_NULL)
