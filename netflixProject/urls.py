@@ -21,7 +21,12 @@ urlpatterns = [
     path('accounts/', include("django.contrib.auth.urls")),
     path('accounts/', include("accounts.urls")),
     path('test/', include("testApp.urls")),
-    path("movies/", include("movies.urls")),
+
+    # Using Templates
+    #path("movies/", include("movies.urls")),
+
+    # Using APIs
+    path('api/movies/', include('movies.api.urls'))
 ]
 
 

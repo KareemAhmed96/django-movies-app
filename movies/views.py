@@ -3,6 +3,7 @@ from .forms import MovieForm
 from .models import Movie
 from django.contrib.auth.decorators import login_required, permission_required
 
+
 # Create your views here.
 
 @login_required
@@ -37,6 +38,7 @@ def add(request):
 
 
 @login_required
+@permission_required("movies.edit_movie")
 def edit(request, id):
     movie = Movie.objects.get(pk=id)
     form = MovieForm(request.POST or None, request.FILES or None, instance=movie)
@@ -51,6 +53,7 @@ def edit(request, id):
 
 
 @login_required
+@permission_required("movies.delete_movie")
 def delete(request, id):
     movie = Movie.objects.get(pk=id)
     movie.delete()
