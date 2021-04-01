@@ -6,8 +6,13 @@
 
 
 {% block body %}
+    {% if movie.poster.url != Null %}
+        <img src="{{ movie.poster.url }}" width="120" height="200">
 
-    <img src="{{ movie.poster.url }}" width="120" height="200">
+    {% else %}
+        <h3>No image url available</h3>
+
+    {% endif %}
 
     <div>
         <h3>{{ movie.title }}</h3>
@@ -36,7 +41,12 @@
     <button><a href="{% url 'delete' movie.id %}" >Delete Movie</a></button>
 
     <br><br>
+    {% if movie.video.url != Null %}
+        <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>
 
-    <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>
+    {% else %}
+        <h3>No video url available</h3>
+
+    {% endif %}
 
 {% endblock %}

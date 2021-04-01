@@ -45,12 +45,30 @@ def update(request, id):
             "success": True,
             "id": serializer.data["id"],
             "message": "Movie edited successfully"
-        }, status=status.HTTP_201_CREATED)
+        }, status=status.HTTP_200_OK)
 
     return Response(data={
         "success": False,
         "errors": serializer.errors
     }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["DELETE", ])
+def delete(request, id):
+    try:
+        movie = Movie.objects.get(id=id)
+        movie.delete()
+        return Response(data={
+            "success": True,
+            "id": id,
+            "message": "Movie deleted successfully"
+        }, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response(data={
+            "success": False,
+            "errors": str(e)
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 
 # Generic Views

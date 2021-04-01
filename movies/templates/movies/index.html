@@ -13,7 +13,13 @@
         <button><a href="{% url 'add' %}">Add Movie</a></button>
         <br><br>
         {% for movie in movies %}
-            <img src="{{ movie.poster.url }}" width="120" height="200">
+            {% if movie.poster.url != Null %}
+                <img src="{{ movie.poster.url }}" width="120" height="200">
+
+            {% else %}
+                <h3>No image url available</h3>
+
+            {% endif %}
             <div>
                 <a href="{% url 'show' movie.id %}">{{ movie.title }}</a>
                 <h4>{{ movie.overview }}</h4>

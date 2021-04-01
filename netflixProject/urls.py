@@ -23,10 +23,11 @@ urlpatterns = [
     path('test/', include("testApp.urls")),
 
     # Using Templates
-    #path("movies/", include("movies.urls")),
+    path("movies/", include("movies.urls")),
 
     # Using APIs
-    path('api/movies/', include('movies.api.urls'))
+    path('api/movies/', include('movies.api.urls')),
+    path('api/accounts/', include('accounts.api.urls')),
 ]
 
 
