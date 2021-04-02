@@ -1,10 +1,16 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.permissions import BasePermission
 
 from .serializers import UserSerializer
 from django.contrib.auth.models import User
 
+
+# Custom permission
+class IsManager(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm("movies.view_movie")
 
 @api_view(["GET", ])
 def api_get_users(request):

@@ -1,15 +1,16 @@
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import generics
+from accounts.api.views import IsManager
 
 from movies.models import Movie
 from .serializers import MovieSerializer
 
 
 @api_view(["GET", ])
-@permission_classes([IsAuthenticated, ])
+@permission_classes([IsAuthenticated, IsManager])
 def index(request):
     # returns query_set
     movies = Movie.objects.all()
@@ -78,6 +79,7 @@ def delete(request, id):
 class MovieList(generics.ListAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class CreateMovie(generics.CreateAPIView):
