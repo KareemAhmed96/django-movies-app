@@ -6,7 +6,7 @@
 
 
 {% block body %}
-    {% if movie.poster.url != Null %}
+    {% if movie.poster.url is not Null %}
         <img src="{{ movie.poster.url }}" width="120" height="200">
 
     {% else %}
@@ -41,7 +41,7 @@
     <button><a href="{% url 'delete' movie.id %}" >Delete Movie</a></button>
 
     <br><br>
-    {% if movie.video.url != Null %}
+    {% if movie.video.url is not Null %}
         <video controls src="{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}" width="100%"></video>
 
     {% else %}
