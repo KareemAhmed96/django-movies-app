@@ -22,6 +22,7 @@ def index(request):
 
 
 @api_view(["POST", ])
+@permission_classes([IsAuthenticated, ])
 def create(request):
     serializer = MovieSerializer(data=request.data)
     if serializer.is_valid():
@@ -39,6 +40,7 @@ def create(request):
 
 
 @api_view(["PUT", "POST"])
+@permission_classes([IsAuthenticated, ])
 def update(request, id):
     movie = Movie.objects.get(id=id)
     serializer = MovieSerializer(data=request.data, instance=movie)
@@ -57,6 +59,7 @@ def update(request, id):
 
 
 @api_view(["DELETE", ])
+@permission_classes([IsAuthenticated, ])
 def delete(request, id):
     try:
         movie = Movie.objects.get(id=id)
